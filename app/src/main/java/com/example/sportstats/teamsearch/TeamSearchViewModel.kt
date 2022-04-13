@@ -16,7 +16,7 @@ class TeamSearchViewModel(private val teamService: TeamApiService) : ViewModel()
     val teams: LiveData<List<Team>> = _teams
 
     init {
-        searchTeamByName("real")
+        searchTeamByName()
     }
 
     fun searchTeamByName(name: String = "") {

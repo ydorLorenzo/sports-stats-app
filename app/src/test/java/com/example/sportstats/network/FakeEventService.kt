@@ -1,21 +1,28 @@
 package com.example.sportstats.network
 
-class FakeEventService(var events: MutableList<EventResult>? = mutableListOf()) :
-    EventApiService {
+class FakeEventService : EventApiService {
+    private var eventServiceData = EventLastResults(listOf())
+
     override suspend fun getLastFiveEventsByTeamId(teamId: String): EventLastResults {
-        return EventLastResults(events
-            ?.filter { it.idHomeTeam == teamId }
-            ?.sortedBy { it.dateEvent }
-            ?.slice(0..5)!!
-        )
+        return EventLastResults(
+            eventServiceData.results.filter {
+                it.idHomeTeam == teamId || it.idAwayTeam == teamId
+            })
     }
 
     override suspend fun getNextFiveEventsByTeamId(teamId: String): EventsNext {
-        return EventsNext(events
-            ?.filter { it.idHomeTeam == teamId }
-            ?.sortedBy { it.dateEvent }
-            ?.reversed()
-            ?.slice(0..5)!!
-        )
+        return EventsNext(eventServiceData.results.filter {
+            it.idAwayTeam == teamId || it.idHomeTeam == teamId
+        })
+    }
+
+    fun addEvent(vararg events: EventResult) {
+        val results = eventServiceData.results.toMutableList()
+        results.addAll(events)
+        eventServiceData = EventLastResults(results)
+    }
+
+    fun clearData() {
+        eventServiceData = EventLastResults(listOf())
     }
 }

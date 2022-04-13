@@ -12,8 +12,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportstats.R
+import com.example.sportstats.ServiceLocator
 import com.example.sportstats.databinding.FragmentTeamSearchBinding
-import com.example.sportstats.network.SportsApi
 
 const val SPORTS_STATS_PREF = "SportStatsPref"
 const val TEAM_ID = "TeamId"
@@ -26,7 +26,7 @@ class TeamSearchFragment : Fragment() {
 
     // Initialize the ViewModel
     private val viewModel by viewModels<TeamSearchViewModel> {
-        TeamSearchViewModelFactory(SportsApi.teamService)
+        TeamSearchViewModelFactory(ServiceLocator.provideTeamService())
     }
 
     private var _binding: FragmentTeamSearchBinding? = null

@@ -9,8 +9,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportstats.R
+import com.example.sportstats.ServiceLocator
 import com.example.sportstats.databinding.FragmentTeamStatsBinding
-import com.example.sportstats.network.SportsApi
 import com.example.sportstats.teamsearch.SPORTS_STATS_PREF
 import com.example.sportstats.teamsearch.TEAM_ID
 import com.example.sportstats.teamsearch.TEAM_NAME
@@ -23,7 +23,10 @@ class TeamStatsFragment : Fragment() {
 
     // Initialize the ViewModel
     private val viewModel by viewModels<TeamStatsViewModel> {
-        TeamStatsViewModelFactory(SportsApi.teamService, SportsApi.eventService)
+        TeamStatsViewModelFactory(
+            ServiceLocator.provideTeamService(),
+            ServiceLocator.provideEventService()
+        )
     }
 
     private lateinit var teamId: String

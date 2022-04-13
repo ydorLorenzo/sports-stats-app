@@ -1,13 +1,11 @@
 package com.example.sportstats.network
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.example.sportstats.ServiceLocator
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 class SportsApiTest : BaseTest() {
     private lateinit var serviceTeam: TeamApiService
@@ -17,18 +15,13 @@ class SportsApiTest : BaseTest() {
     fun setup() {
         val url = mockWebServer.url("/")
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl(url)
-            .addConverterFactory(
-                MoshiConverterFactory.create(
-                    Moshi.Builder()
-                        .add(KotlinJsonAdapterFactory())
-                        .build()
-                )
-            )
-            .build()
-        serviceTeam = retrofit.create(TeamApiService::class.java)
-        serviceEvent = retrofit.create(EventApiService::class.java)
+        serviceTeam = ServiceLocator.provideTeamService(url)
+        serviceEvent = ServiceLocator.provideEventService(url)
+    }
+
+    @After
+    fun cleanup() {
+        ServiceLocator.resetService()
     }
 
     @Test

@@ -16,9 +16,6 @@ import com.example.sportstats.teamsearch.TEAM_ID
 import com.example.sportstats.teamsearch.TEAM_NAME
 
 
-const val TEAM_ID_ARG = "teamId"
-const val TEAM_NAME_AGR = "teamName"
-
 /**
  * A simple [Fragment] subclass.
  */
@@ -39,13 +36,8 @@ class TeamStatsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        val tmpTeamId = getPrefData(TEAM_ID).toString()
-        val tmpTeamName = getPrefData(TEAM_NAME).toString()
-
-        arguments?.let {
-            teamId = it.getString(TEAM_ID_ARG, tmpTeamId)
-            teamName = it.getString(TEAM_NAME_AGR, tmpTeamName)
-        }
+        teamId = getPrefData(TEAM_ID).toString()
+        teamName = getPrefData(TEAM_NAME).toString()
     }
 
     override fun onCreateView(

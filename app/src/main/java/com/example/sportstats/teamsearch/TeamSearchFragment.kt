@@ -52,8 +52,8 @@ class TeamSearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Binding the ViewModel to view
-        _binding!!.viewModel = viewModel
-        _binding!!.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         // Getting the [RecyclerView] to set it up
         recyclerView = binding.teamsGrid
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

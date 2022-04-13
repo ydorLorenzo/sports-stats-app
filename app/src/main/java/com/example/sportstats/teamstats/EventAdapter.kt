@@ -13,14 +13,18 @@ import com.example.sportstats.databinding.MatchResultItemBinding
 import com.example.sportstats.network.EventResult
 
 class EventAdapter : ListAdapter<EventResult, EventAdapter.EventViewHolder>(DiffCallback) {
-    class EventViewHolder(private val binding: MatchResultItemBinding, private val context: Context) :
+    class EventViewHolder(
+        private val binding: MatchResultItemBinding,
+        private val context: Context
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SimpleDateFormat")
         fun bind(event: EventResult) {
             binding.event = event
             if (event.strStatus != "Not Started") {
                 binding.eventResult.visibility = View.VISIBLE
-                binding.eventResult.text = context.getString(R.string.match_score, event.intHomeScore, event.intAwayScore)
+                binding.eventResult.text =
+                    context.getString(R.string.match_score, event.intHomeScore, event.intAwayScore)
             } else {
                 binding.eventResult.visibility = View.INVISIBLE
             }

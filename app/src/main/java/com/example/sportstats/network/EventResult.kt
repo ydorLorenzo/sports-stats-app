@@ -53,6 +53,7 @@ data class EventResult(
 data class EventLastResults(
     val results: List<EventResult>
 )
+
 data class EventsNext(
     val events: List<EventResult>
 )

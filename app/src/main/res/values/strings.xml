@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Sport Stats</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sports_fragment_btn">Go Next</string>
+    <string name="match_score">%s  -  %s</string>
+    <string name="visitor_team_score">0</string>
+    <string name="home_club_team_score">2</string>
+    <string name="home_club_team_name">BYN</string>
+    <string name="visitor_team_name">BFC</string>
+    <string name="countries_fragment_btn">Go next</string>
+    <string name="hello_blank_fragment">blank</string>
+    <string name="sport_card_image_default_description">Sport Type</string>
+    <string name="search_title">Search for your team</string>
+    <string name="search_hint">Find your favorite team</string>
+    <string name="search_teams_title">Sports Teams</string>
+    <string name="team_sport">Sport: %s</string>
+    <string name="team_main_league">Main League: %s</string>
+    <string name="team_stats_title"><![CDATA[Stats & News]]></string>
+    <string name="last_5">Last 5 Games</string>
+    <string name="next_5">Next 5 Games</string>
+    <string name="search_team">Search Team</string>
+    <string name="location">%s, %s</string>
+    <string name="no_content">Choose Your Team to Get Started</string>
+</resources>

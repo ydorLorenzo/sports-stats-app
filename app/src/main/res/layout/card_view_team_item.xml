@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="team"
+            type="com.example.sportstats.network.Team" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/team_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/team_card_image"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/sport_card_image_default_description"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{team.strTeamBadgeUrl}"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/team_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{team.strTeam}"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    tools:text="Arsenal" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/team_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/team_sport(team.strSport)}"
+                    tools:text="Sport: Soccer" />
+
+                <TextView
+                    android:id="@+id/team_main_league"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/team_main_league(team.strLeague)}"
+                    tools:text="Main League: English Premier League" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

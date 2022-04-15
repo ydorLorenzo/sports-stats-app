@@ -7,16 +7,16 @@
 
         <variable
             name="event"
-            type="com.example.sportstats.network.EventResult" />
+            type="com.example.sportstats.teamstats.EventData" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="6dp"
         android:layout_margin="4dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,9 +27,9 @@
                 android:id="@+id/home_club_img"
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{event.strThumb}"
                 android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{event.leagueImg}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -43,39 +43,41 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{event.strLeague}"
+                    android:text="@{event.league}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     tools:text="English Premier League" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{event.strEvent}"
+                    android:text="@{event.title}"
                     android:textAppearance="?attr/textAppearanceBody1"
                     tools:text="Liverpool vs Watford" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="8dp">
 
                     <TextView
                         android:id="@+id/event_result"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
                         android:layout_gravity="start"
+                        android:paddingBottom="4dp"
+                        android:text="@{event.score}"
                         android:textAppearance="?attr/textAppearanceBody1"
+                        app:noDataInstantiated="@{event.status}"
                         tools:text="2 - 4" />
 
                     <TextView
                         android:id="@+id/match_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
                         android:layout_gravity="end"
+                        android:text="@{event.date}"
                         android:textAppearance="?attr/textAppearanceBody2"
-                        android:text="@{event.dateEvent}"
                         tools:text="Fri, 14 Ago" />
                 </LinearLayout>
             </LinearLayout>

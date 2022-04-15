@@ -61,8 +61,8 @@ class TeamSearchFragment : Fragment() {
         // Creating the adapter and attaching the lambda call to the onItemClick hook
         val teamAdapter = TeamSearchAdapter {
             // Navigate to the proper direction
-            setPrefData(TEAM_ID, it.idTeam)
-            setPrefData(TEAM_NAME, it.strTeam!!)
+            setPrefData(TEAM_ID, it.teamId)
+            setPrefData(TEAM_NAME, it.teamName)
             view.findNavController()
                 .navigate(TeamSearchFragmentDirections.actionTeamsFragmentToTeamStatsFragment())
         }
@@ -93,7 +93,7 @@ class TeamSearchFragment : Fragment() {
         searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
 
         // Setting the listeners with the [TeamQueryTextListener] to manage the query search
-        searchView?.setOnQueryTextListener(TeamQueryTextListener(viewModel))
+        searchView?.setOnQueryTextListener(TeamQueryTextListener { viewModel.onSearchTeamByName(it) })
         searchItem.expandActionView()
 
         super.onCreateOptionsMenu(menu, inflater)

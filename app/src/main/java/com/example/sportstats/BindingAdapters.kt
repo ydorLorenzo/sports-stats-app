@@ -2,16 +2,17 @@ package com.example.sportstats
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.sportstats.network.EventResult
-import com.example.sportstats.network.Team
 import com.example.sportstats.teamsearch.ConnectionApiStatus
+import com.example.sportstats.teamsearch.TeamItemUiEvent
 import com.example.sportstats.teamsearch.TeamSearchAdapter
 import com.example.sportstats.teamstats.EventAdapter
+import com.example.sportstats.teamstats.EventData
 
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imgUrl: String?) {
@@ -25,25 +26,25 @@ fun bindImage(imageView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("listTeams")
-fun bindSportRecyclerView(recyclerView: RecyclerView, data: List<Team>?) {
+fun bindSportRecyclerView(recyclerView: RecyclerView, data: List<TeamItemUiEvent>?) {
     val adapter = recyclerView.adapter as TeamSearchAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listLast5Events")
-fun bindLast5RecyclerView(recyclerView: RecyclerView, data: List<EventResult>?) {
+fun bindLast5RecyclerView(recyclerView: RecyclerView, data: List<EventData>?) {
     val adapter = recyclerView.adapter as EventAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listNext5Events")
-fun bindNext5RecyclerView(recyclerView: RecyclerView, data: List<EventResult>?) {
+fun bindNext5RecyclerView(recyclerView: RecyclerView, data: List<EventData>?) {
     val adapter = recyclerView.adapter as EventAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("connectionApiStatus")
-fun bindStatus(statusImageView: ImageView, status: ConnectionApiStatus) {
+fun bindStatus(statusImageView: ImageView, status: ConnectionApiStatus?) {
     when (status) {
         ConnectionApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
@@ -54,36 +55,31 @@ fun bindStatus(statusImageView: ImageView, status: ConnectionApiStatus) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
+        else -> statusImageView.visibility = View.GONE
+    }
+}
+
+@BindingAdapter("connectionApiStatus")
+fun bindStatusTextView(statusImageView: TextView, status: ConnectionApiStatus?) {
+    statusImageView.visibility = when (status) {
+        ConnectionApiStatus.DONE -> View.GONE
+        else -> View.VISIBLE
     }
 }
 
 @BindingAdapter("noDataInstantiated")
-fun bindNoData(noDataTextView: TextView, noData: Boolean) {
-    if (!noData) {
-        noDataTextView.visibility = View.VISIBLE
-    } else {
-        noDataTextView.visibility = View.GONE
-    }
+fun bindNoDataTextView(noDataTextView: TextView, noData: Boolean?) {
+    noDataTextView.visibility = if (noData == null || noData) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter("last5Text")
-fun bindLast5EvenText(last5EventTextView: TextView, noData: Boolean) {
-    if (noData) {
-        last5EventTextView.visibility = View.VISIBLE
-        last5EventTextView.setText(R.string.last_5)
-    } else {
-        last5EventTextView.visibility = View.GONE
-    }
+@BindingAdapter("reverseNoDataInstantiated")
+fun bindReverseNoDataTextView(reverseNoDataTextView: TextView, noData: Boolean?) {
+    reverseNoDataTextView.visibility = if (noData == null || noData) View.GONE else View.VISIBLE
 }
 
-@BindingAdapter("next5Text")
-fun bindNext5EvenText(next5EventTextView: TextView, noData: Boolean) {
-    if (noData) {
-        next5EventTextView.visibility = View.VISIBLE
-        next5EventTextView.setText(R.string.next_5)
-    } else {
-        next5EventTextView.visibility = View.GONE
-    }
+@BindingAdapter("noDataInstantiated")
+fun bindNoDataScrollView(noDataScrollView: ScrollView, noData: Boolean?) {
+    noDataScrollView.visibility = if (noData == null || noData) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("textWithoutNull")

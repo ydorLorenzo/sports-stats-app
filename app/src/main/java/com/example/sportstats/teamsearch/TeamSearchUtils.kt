@@ -2,12 +2,12 @@ package com.example.sportstats.teamsearch
 
 import androidx.appcompat.widget.SearchView
 
-class TeamQueryTextListener(private val viewModel: TeamSearchViewModel) :
+class TeamQueryTextListener(private val searchTeamByName: (name: String) -> Unit) :
     SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(p0: String?): Boolean {
         if (p0 == null) return false
 
-        viewModel.searchTeamByName(p0)
+        searchTeamByName(p0)
         return true
     }
 

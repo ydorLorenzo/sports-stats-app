@@ -14,9 +14,9 @@
         <entry key="app/src/main/res/layout/fragment_search_team.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_sports.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_team_search.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/fragment_team_stats.xml" value="0.22324226943675993" />
+        <entry key="app/src/main/res/layout/fragment_team_stats.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_teams.xml" value="0.33242653457347865" />
-        <entry key="app/src/main/res/layout/match_result_item.xml" value="0.26822157434402333" />
+        <entry key="app/src/main/res/layout/match_result_item.xml" value="0.2147887323943662" />
         <entry key="app/src/main/res/menu/options_menu.xml" value="0.2598958333333333" />
         <entry key="app/src/main/res/menu/team_stats_menu.xml" value="0.2598958333333333" />
         <entry key="app/src/main/res/xml/searchable.xml" value="0.2598958333333333" />

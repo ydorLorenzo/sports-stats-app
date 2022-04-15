@@ -26,7 +26,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:listTeams="@{viewModel.teams}"
+            app:listTeams="@{viewModel.teamsSearched}"
             app:spanCount="1"
             tools:itemCount="10"
             tools:listitem="@layout/card_view_team_item" />

@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sportstats.databinding.CardViewTeamItemBinding
 import com.example.sportstats.network.Team
 
-class TeamSearchAdapter(private val onItemClick: (Team) -> Unit) :
-    ListAdapter<Team, TeamSearchAdapter.TeamViewHolder>(DiffCallback) {
+class TeamSearchAdapter(private val onItemClick: (TeamItemUiEvent) -> Unit) :
+    ListAdapter<TeamItemUiEvent, TeamSearchAdapter.TeamViewHolder>(DiffCallback) {
 
     class TeamViewHolder(private val binding: CardViewTeamItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(team: Team) {
+        fun bind(team: TeamItemUiEvent) {
             binding.team = team
             binding.executePendingBindings()
         }
@@ -36,13 +36,13 @@ class TeamSearchAdapter(private val onItemClick: (Team) -> Unit) :
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<Team>() {
+        private val DiffCallback = object : DiffUtil.ItemCallback<TeamItemUiEvent>() {
 
-            override fun areItemsTheSame(oldItem: Team, newItem: Team): Boolean {
-                return oldItem.idTeam == newItem.idTeam
+            override fun areItemsTheSame(oldItem: TeamItemUiEvent, newItem: TeamItemUiEvent): Boolean {
+                return oldItem.teamId == newItem.teamId
             }
 
-            override fun areContentsTheSame(oldItem: Team, newItem: Team): Boolean {
+            override fun areContentsTheSame(oldItem: TeamItemUiEvent, newItem: TeamItemUiEvent): Boolean {
                 return oldItem == newItem
             }
         }

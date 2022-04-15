@@ -46,7 +46,7 @@ class TeamSearchViewModelTest : BaseTest() {
     fun searchTeamByName_loading() = runTest {
         // When
         val job = launch {
-            teamSearchViewModel.searchTeamByName()
+            teamSearchViewModel.onSearchTeamByName()
         }
         // Then
         assertThat(teamSearchViewModel.status.value, `is`(nullValue()))

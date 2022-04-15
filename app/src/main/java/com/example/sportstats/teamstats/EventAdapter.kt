@@ -1,33 +1,21 @@
 package com.example.sportstats.teamstats
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sportstats.R
 import com.example.sportstats.databinding.MatchResultItemBinding
-import com.example.sportstats.network.EventResult
 
-class EventAdapter : ListAdapter<EventResult, EventAdapter.EventViewHolder>(DiffCallback) {
+class EventAdapter : ListAdapter<EventData, EventAdapter.EventViewHolder>(DiffCallback) {
     class EventViewHolder(
-        private val binding: MatchResultItemBinding,
-        private val context: Context
+        private val binding: MatchResultItemBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SimpleDateFormat")
-        fun bind(event: EventResult) {
+        fun bind(event: EventData) {
             binding.event = event
-            if (event.strStatus != "Not Started") {
-                binding.eventResult.visibility = View.VISIBLE
-                binding.eventResult.text =
-                    context.getString(R.string.match_score, event.intHomeScore, event.intAwayScore)
-            } else {
-                binding.eventResult.visibility = View.INVISIBLE
-            }
         }
     }
 
@@ -40,7 +28,7 @@ class EventAdapter : ListAdapter<EventResult, EventAdapter.EventViewHolder>(Diff
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ), parent.context
+            )
         )
     }
 
@@ -49,12 +37,12 @@ class EventAdapter : ListAdapter<EventResult, EventAdapter.EventViewHolder>(Diff
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<EventResult>() {
-            override fun areItemsTheSame(oldItem: EventResult, newItem: EventResult): Boolean {
-                return oldItem.idEvent == newItem.idEvent
+        private val DiffCallback = object : DiffUtil.ItemCallback<EventData>() {
+            override fun areItemsTheSame(oldItem: EventData, newItem: EventData): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: EventResult, newItem: EventResult): Boolean {
+            override fun areContentsTheSame(oldItem: EventData, newItem: EventData): Boolean {
                 return oldItem == newItem
             }
 

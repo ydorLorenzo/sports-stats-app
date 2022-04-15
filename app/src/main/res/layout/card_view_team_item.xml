@@ -7,7 +7,7 @@
 
         <variable
             name="team"
-            type="com.example.sportstats.network.Team" />
+            type="com.example.sportstats.teamsearch.TeamItemUiEvent" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/sport_card_image_default_description"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{team.strTeamBadgeUrl}"
+                app:imageUrl="@{team.teamImg}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <LinearLayout
@@ -43,7 +43,7 @@
                     android:id="@+id/team_card_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{team.strTeam}"
+                    android:text="@{team.teamName}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     tools:text="Arsenal" />
 
@@ -55,14 +55,14 @@
                     android:id="@+id/team_sport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/team_sport(team.strSport)}"
+                    android:text="@{@string/team_sport(team.sportName)}"
                     tools:text="Sport: Soccer" />
 
                 <TextView
                     android:id="@+id/team_main_league"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/team_main_league(team.strLeague)}"
+                    android:text="@{@string/team_main_league(team.mainLeague)}"
                     tools:text="Main League: English Premier League" />
             </LinearLayout>
 
